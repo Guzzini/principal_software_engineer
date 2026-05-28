@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://127.0.1.1:5432/legal_documents
+    username: postgres
+    password: guzzini
+    ports:
+      - "5432:5432"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  kafka:
+    bootstrap-servers: localhost:9092
+  application:
+    name:LN-Document-Revision-Service
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus,metrics
+server:
+  port: 8081
+  servlet:
+    context-path: /api/v1
